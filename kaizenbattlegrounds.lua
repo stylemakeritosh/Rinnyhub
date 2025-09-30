@@ -1,0 +1,335 @@
+-- Load UI Library
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/x2zu/OPEN-SOURCE-UI-ROBLOX/refs/heads/main/X2ZU%20UI%20ROBLOX%20OPEN%20SOURCE/DummyUi-leak-by-x2zu/fetching-main/Tools/Framework.luau"))()
+
+-- Create Main Window
+local Window = Library:Window({
+    Title = "Rinny Hub",
+    Desc = "rintoshiii on top",
+    Icon = 105059922903197,
+    Theme = "Dark",
+    Config = {
+        Keybind = Enum.KeyCode.LeftControl,
+        Size = UDim2.new(0, 500, 0, 400)
+    },
+    CloseUIButton = {
+        Enabled = true,
+        Text = "Rinny"
+    }
+})
+
+-- Tab: Main
+local MainTab = Window:Tab({Title = "Main", Icon = "home"}) do
+    MainTab:Section({Title = "Home"})
+
+    MainTab:Button({
+        Title = "Anti-Cheat",
+        Desc = "Enable Anti-Cheat",
+        Callback = function()
+            print("Anti Cheat Enabled!")
+        end
+    })
+
+    MainTab:Toggle({
+        Title = "Detected Admin",
+        Desc = "Toggle Anti-Admin",
+        Value = false,
+        Callback = function(state)
+            if state then
+                print("Anti-Admin Enabled!")
+            end
+        end
+    })
+
+    MainTab:Dropdown({
+        Title = "Feature",
+        List = {"No-Cooldown", "No-Ragdoll", "Reducing-Lag"},
+        Value = "No-Cooldown",
+        Callback = function(selection)
+            print("Selected:", selection)
+        end
+    })
+end
+
+Window:Line()
+
+-- Tab: Characters
+local CharactersTab = Window:Tab({Title = "Characters", Icon = "user"}) do
+    -- Gojo Section
+    CharactersTab:Section({Title = "Gojo"})
+
+    -- Gojo attacks
+    local gojoAttacks = {"Blue", "Red", "Barrage", "Hora", "BackHand", "MaxRed", "HollowPurpleBig", "Domain"}
+    for _, attack in pairs(gojoAttacks) do
+        local loopConnection = nil
+
+        -- Regular attack button
+        CharactersTab:Button({
+            Title = attack,
+            Desc = "Perform " .. attack,
+            Callback = function()
+                local args = {attack}
+                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Gojo"):FireServer(unpack(args))
+            end
+        })
+
+        -- Loop toggle for the attack
+        CharactersTab:Toggle({
+            Title = "Loop " .. attack,
+            Desc = "Toggle loop for " .. attack,
+            Value = false,
+            Callback = function(state)
+                if state then
+                    loopConnection = game:GetService("RunService").Heartbeat:Connect(function()
+                        local args = {attack}
+                        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Gojo"):FireServer(unpack(args))
+                        wait(cooldown)
+                    end)
+                else
+                    if loopConnection then
+                        loopConnection:Disconnect()
+                        loopConnection = nil
+                    end
+                end
+            end
+        })
+    end
+
+    -- Yuji Section
+    CharactersTab:Section({Title = "Yuji"})
+
+    -- Yuji attacks
+    local yujiAttacks = {"Brother", "Divergent", "Black", "Manji", "Cleave", "FireArrow", "Dismantle", "Domain"}
+    for _, attack in pairs(yujiAttacks) do
+        local loopConnection = nil
+
+        -- Regular attack button
+        CharactersTab:Button({
+            Title = attack,
+            Desc = "Perform " .. attack,
+            Callback = function()
+                local args = {attack}
+                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Yuji"):FireServer(unpack(args))
+            end
+        })
+
+        -- Loop toggle for the attack
+        CharactersTab:Toggle({
+            Title = "Loop " .. attack,
+            Desc = "Toggle loop for " .. attack,
+            Value = false,
+            Callback = function(state)
+                if state then
+                    loopConnection = game:GetService("RunService").Heartbeat:Connect(function()
+                        local args = {attack}
+                        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Yuji"):FireServer(unpack(args))
+                        wait(cooldown)
+                    end)
+                else
+                    if loopConnection then
+                        loopConnection:Disconnect()
+                        loopConnection = nil
+                    end
+                end
+            end
+        })
+    end
+
+    -- Luffy Section
+    CharactersTab:Section({Title = "Luffy"})
+
+    -- Luffy attacks
+    local luffyAttacks = {"Axe", "Bazooka", "Gatling", "Bullet", "JetPistol", "JetBazooka", "JetGat", "RedHawk"}
+    for _, attack in pairs(luffyAttacks) do
+        local loopConnection = nil
+
+        -- Regular attack button
+        CharactersTab:Button({
+            Title = attack,
+            Desc = "Perform " .. attack,
+            Callback = function()
+                local args = {attack}
+                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Luffy"):FireServer(unpack(args))
+            end
+        })
+
+        -- Loop toggle for the attack
+        CharactersTab:Toggle({
+            Title = "Loop " .. attack,
+            Desc = "Toggle loop for " .. attack,
+            Value = false,
+            Callback = function(state)
+                if state then
+                    loopConnection = game:GetService("RunService").Heartbeat:Connect(function()
+                        local args = {attack}
+                        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Luffy"):FireServer(unpack(args))
+                        wait(cooldown)
+                    end)
+                else
+                    if loopConnection then
+                        loopConnection:Disconnect()
+                        loopConnection = nil
+                    end
+                end
+            end
+        })
+    end
+
+    -- Goku Section
+    CharactersTab:Section({Title = "Goku"})
+
+    -- Goku attacks
+    local gokuAttacks = {"KiBarrage", "Kamehameha", "DragonCombo", "FrenzyKicks", "QuickCombo", "SuperKamehameha", "UltraSense", "GodlyCombo"}
+    for _, attack in pairs(gokuAttacks) do
+        local loopConnection = nil
+
+        -- Regular attack button
+        CharactersTab:Button({
+            Title = attack,
+            Desc = "Perform " .. attack,
+            Callback = function()
+                local args = {attack}
+                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Goku"):FireServer(unpack(args))
+            end
+        })
+
+        -- Loop toggle for the attack
+        CharactersTab:Toggle({
+            Title = "Loop " .. attack,
+            Desc = "Toggle loop for " .. attack,
+            Value = false,
+            Callback = function(state)
+                if state then
+                    loopConnection = game:GetService("RunService").Heartbeat:Connect(function()
+                        local args = {attack}
+                        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Goku"):FireServer(unpack(args))
+                        wait(cooldown)
+                    end)
+                else
+                    if loopConnection then
+                        loopConnection:Disconnect()
+                        loopConnection = nil
+                    end
+                end
+            end
+        })
+    end
+
+    -- Yuta Section
+    CharactersTab:Section({Title = "Yuta"})
+
+    -- Yuta attacks
+    local yutaAttacks = {"Slashes", "Strike", "Rampage", "Heal", "Shine", "BlackFlash", "GroundBreak", "PureLove"}
+    for _, attack in pairs(yutaAttacks) do
+        local loopConnection = nil
+
+        -- Regular attack button
+        CharactersTab:Button({
+            Title = attack,
+            Desc = "Perform " .. attack,
+            Callback = function()
+                local args = {attack}
+                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Yuta"):FireServer(unpack(args))
+            end
+        })
+
+        -- Loop toggle for the attack
+        CharactersTab:Toggle({
+            Title = "Loop " .. attack,
+            Desc = "Toggle loop for " .. attack,
+            Value = false,
+            Callback = function(state)
+                if state then
+                    loopConnection = game:GetService("RunService").Heartbeat:Connect(function()
+                        local args = {attack}
+                        game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Yuta"):FireServer(unpack(args))
+                        wait(cooldown)
+                    end)
+                else
+                    if loopConnection then
+                        loopConnection:Disconnect()
+                        loopConnection = nil
+                    end
+                end
+            end
+        })
+    end
+end
+
+Window:Line()
+
+-- Tab: God Mode
+local GodModeTab = Window:Tab({Title = "God Mode", Icon = "shield"}) do
+    GodModeTab:Section({Title = "Auto Abilities"})
+
+    local healLoop
+    local ultraSenseLoop
+    local cooldown = 0.5 -- Default cooldown
+
+    GodModeTab:Toggle({
+        Title = "Auto Heal (God Mode)",
+        Desc = "Toggle auto heal",
+        Value = false,
+        Callback = function(state)
+            if state then
+                healLoop = game:GetService("RunService").Heartbeat:Connect(function()
+                    local args = {"Heal"}
+                    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Yuta"):FireServer(unpack(args))
+                    wait(0.01)
+                end)
+            else
+                if healLoop then
+                    healLoop:Disconnect()
+                    healLoop = nil
+                end
+            end
+        end
+    })
+
+    GodModeTab:Toggle({
+        Title = "Ultra Sense (God Mode)",
+        Desc = "Toggle ultra sense",
+        Value = false,
+        Callback = function(state)
+            if state then
+                ultraSenseLoop = game:GetService("RunService").Heartbeat:Connect(function()
+                    local args = {"UltraSense"}
+                    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("Goku"):FireServer(unpack(args))
+                    wait(0.01)
+                end)
+            else
+                if ultraSenseLoop then
+                    ultraSenseLoop:Disconnect()
+                    ultraSenseLoop = nil
+                end
+            end
+        end
+    })
+end
+
+Window:Line()
+
+-- Tab: Settings
+local SettingsTab = Window:Tab({Title = "Settings", Icon = "settings"}) do
+    SettingsTab:Section({Title = "Loop Settings"})
+
+    local cooldown = 0.5 -- Default cooldown
+
+    SettingsTab:Slider({
+        Title = "Loop Cooldown (seconds)",
+        Desc = "Set loop cooldown",
+        Min = 0.1,
+        Max = 5,
+        Rounding = 0.1,
+        Value = 0.5,
+        Callback = function(value)
+            cooldown = value
+        end
+    })
+end
+
+-- Final Notification
+Window:Notify({
+    Title = "Rinny Hub",
+    Desc = "All components loaded successfully! Credits: rintoshiii",
+    Time = 4
+})
